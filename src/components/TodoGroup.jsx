@@ -1,21 +1,41 @@
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {TodoContext} from "../App";
 import TodoItem from "./TodoItem";
 import "./css/TodoGroup.css"
+import {Layout, Pagination} from "antd";
+import {Content} from "antd/es/layout/layout";
 
 const TodoGroup = () => {
     const { state } = useContext(TodoContext);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 10;
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const paginatedTodos = state.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     return (
-        <div className="contains">
-            {state.length === 0 ? (
-                <span>Add the things need to do today...</span>
-            ) : (
-                state.map((item, index) => (
-                    <TodoItem key={item.id + index} todo={item.text} id={item.id} />
-                ))
-            )}
-        </div>
+        <Layout>
+            <Content className="contains">
+                {state.length === 0 ? (
+                    <span>Add the things need to do today...</span>
+                ) : (
+                    <>
+                        {paginatedTodos.map((item, index) => (
+                            <TodoItem key={item.id + index} todo={item.text} id={item.id} />
+                        ))}
+                        <Pagination
+                            current={currentPage}
+                            pageSize={pageSize}
+                            total={state.length}
+                            onChange={handlePageChange}
+                        />
+                    </>
+                )}
+            </Content>
+        </Layout>
     );
 };
 

@@ -14,3 +14,13 @@ export const addTodo = async (todoItem) => {
     const response = await instance.post('/todos', todoItem);
     return response.data;
 }
+
+export const updateTodo = async (id, isDone) => {
+    const response = await instance.put(`/todos/${id}`, {done: isDone});
+    return response.data;
+}
+
+export const deleteTodo = async (id) => {
+    const response = await instance.delete(`/todos/${id}`);
+    return response.data;
+};

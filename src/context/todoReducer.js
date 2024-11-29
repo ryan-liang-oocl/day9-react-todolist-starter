@@ -9,12 +9,13 @@ export const ActionTypes = {
 export const todoReducer = (state, action) => {
   switch (action.type){
     case ActionTypes.ADD:
-    {   const todoItem = {
+    {
+      const todoItem = {
       id: action.newTodoItem.id,
       text: action.newTodoItem.text,
       done: action.newTodoItem.done
       };
-        return [...state, todoItem];
+      return [...state, todoItem];
     }
     case ActionTypes.DELETE:
       return [...state.filter((item) => item.id !== action.payload)];
