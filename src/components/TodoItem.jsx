@@ -15,7 +15,7 @@ const TodoItem = ({ id, todo }) => {
 
     const remove = () => {
         deleteTodo(id).then(() => {
-            dispatch({ type: "DELETE", payload: { id } });
+            dispatch({ type: "DELETE", payload:  id  });
         });
     };
 

@@ -23,8 +23,8 @@ const TodoList = () => {
                 </Spin>
             ) : (
                 <>
-                    <TodoGroup />
                     <TodoGenerator />
+                    <TodoGroup />
                 </>
             )}
         </div>

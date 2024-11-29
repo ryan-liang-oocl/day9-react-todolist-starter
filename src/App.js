@@ -16,12 +16,11 @@ function App() {
         <div className="App">
             <TodoContext.Provider value={{ state, dispatch }}>
                 <BrowserRouter>
-                    <NavBar />
                     <Routes>
                         <Route path={"/*"} element={<NotFound />} />
                         <Route path={"/"} element={<Navigate to={"/todo-list"} />} />
-                        <Route path={"/todo-list"} element={<TodoList />} />
-                        <Route path={"/done-list"} element={<DoneList />} />
+                        <Route path={"/todo-list"} element={<><NavBar /><TodoList /></>} />
+                        <Route path={"/done-list"} element={<><NavBar /><DoneList /></>} />
                     </Routes>
                 </BrowserRouter>
             </TodoContext.Provider>
