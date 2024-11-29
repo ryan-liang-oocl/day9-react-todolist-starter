@@ -1,5 +1,5 @@
 import "./css/TodoItem.css"
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {TodoContext} from "../App";
 
 const TodoItem = ({ id, todo }) => {
