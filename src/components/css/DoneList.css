@@ -1,0 +1,25 @@
+.done-list {
+    padding: 20px;
+    background-color: #f0f2f5;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.done-list span {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #e8e8e8;
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.done-list span:last-child {
+    border-bottom: none;
+}
+
+.done-list span:nth-child(even) {
+    background-color: #fafafa;
+}

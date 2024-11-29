@@ -20,7 +20,10 @@ export const todoReducer = (state, action) => {
     case ActionTypes.DELETE:
       return [...state.filter((item) => item.id !== action.payload)];
     case ActionTypes.UPDATE:
-      return [...state.map((item) => {return item.id !== action.payload.id ? item : {id: item.id, text: item.text, done: action.payload.done}})];
+      return [...state.map((item) => {
+        return item.id !== action.payload.id ? item
+            : {id: item.id, text: action.payload.text, done: action.payload.done
+        }})];
     case  ActionTypes.INIT:
       return action.payload;
     default:

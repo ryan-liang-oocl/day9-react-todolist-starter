@@ -15,8 +15,8 @@ export const addTodo = async (todoItem) => {
     return response.data;
 }
 
-export const updateTodo = async (id, isDone) => {
-    const response = await instance.put(`/todos/${id}`, {done: isDone});
+export const updateTodo = async (id, todoItem) => {
+    const response = await instance.put(`/todos/${id}`, todoItem);
     return response.data;
 }
 

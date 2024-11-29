@@ -1,6 +1,7 @@
-import {useContext, useState} from "react";
-import {TodoContext} from "../App";
-import {addTodo} from "../api/todo";
+import { useContext, useState } from "react";
+import { TodoContext } from "../App";
+import { addTodo } from "../api/todo";
+import "./css/TodoGenerator.css";
 
 const TodoGenerator = () => {
     const [text, setText] = useState("");
@@ -12,7 +13,7 @@ const TodoGenerator = () => {
 
     const handleAdd = () => {
         if (text.trim() && text.length < 100) {
-            const newTodoItem = {text: text, done: false };
+            const newTodoItem = { text: text, done: false };
             addTodo(newTodoItem).then((todo) => {
                 dispatch({ type: "ADD", newTodoItem: todo });
                 setText("");
@@ -21,9 +22,9 @@ const TodoGenerator = () => {
     };
 
     return (
-        <div>
+        <div className="TodoGenerator">
             <input value={text} onChange={handleTextChange} />
-            <button onClick={handleAdd}>Add</button>
+            <button onClick={handleAdd}>ADD</button>
         </div>
     );
 };

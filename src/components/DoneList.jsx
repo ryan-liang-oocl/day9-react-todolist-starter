@@ -1,8 +1,9 @@
-import {useContext} from "react";
-import {TodoContext} from "../App";
+import { useContext } from "react";
+import { TodoContext } from "../App";
+import "./css/DoneList.css";
 
 export const DoneList = () => {
-    const {state} = useContext(TodoContext);
+    const { state } = useContext(TodoContext);
 
     const doneList = state.filter((item) => item.done);
 
@@ -17,4 +18,4 @@ export const DoneList = () => {
             )}
         </div>
     );
-}
+};
