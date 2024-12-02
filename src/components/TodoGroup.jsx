@@ -8,10 +8,10 @@ import {Content} from "antd/es/layout/layout";
 const TodoGroup = () => {
     const { state } = useContext(TodoContext);
     const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 10;
-
-    const handlePageChange = (page) => {
+    const [pageSize, setPageSize] = useState(10);
+    const handlePageChange = (page, size) => {
         setCurrentPage(page);
+        setPageSize(size);
     };
 
     const paginatedTodos = state.slice((currentPage - 1) * pageSize, currentPage * pageSize);
@@ -24,7 +24,7 @@ const TodoGroup = () => {
                 ) : (
                     <>
                         {paginatedTodos.map((item, index) => (
-                            <TodoItem key={item.id + index} todo={item.text} id={item.id} />
+                            <TodoItem key={item.id + index} todoItem={item} id={item.id} />
                         ))}
                         <Pagination
                             current={currentPage}

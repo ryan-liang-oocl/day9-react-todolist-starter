@@ -21,9 +21,8 @@ export const todoReducer = (state, action) => {
       return [...state.filter((item) => item.id !== action.payload)];
     case ActionTypes.UPDATE:
       return [...state.map((item) => {
-        return item.id !== action.payload.id ? item
-            : {id: item.id, text: action.payload.text, done: action.payload.done
-        }})];
+        return item.id === action.payload.id ? {...item, ...action.payload} : item;
+      })];
     case  ActionTypes.INIT:
       return action.payload;
     default:

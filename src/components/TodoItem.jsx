@@ -5,22 +5,21 @@ import { TodoContext } from "../App";
 import { deleteTodo, updateTodo } from "../api/todo";
 import { Modal, Input, Button, Popconfirm } from "antd";
 
-const TodoItem = ({ id, todo }) => {
-    const { state, dispatch } = useContext(TodoContext);
-    const todoItem = state.find((item) => item.id === id);
+const TodoItem = ({ id, todoItem }) => {
+    const { dispatch } = useContext(TodoContext);
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [editText, setEditText] = useState(todo);
+    const [editText, setEditText] = useState(todoItem.text);
 
     const handleTextClicked = () => {
         todoItem.done = !todoItem.done;
-        updateTodo(id, todoItem).then(() => {
-            dispatch({ type: "UPDATE", payload: { id, done: todoItem.done } });
+        updateTodo(id, todoItem).then((item) => {
+            dispatch({ type: "UPDATE", payload: item });
         });
     };
 
     const remove = () => {
-        deleteTodo(id).then(() => {
-            dispatch({ type: "DELETE", payload: id });
+        deleteTodo(id).then((item) => {
+            dispatch({ type: "DELETE", payload: item.id });
         });
     };
 
@@ -34,21 +33,24 @@ const TodoItem = ({ id, todo }) => {
 
     const handleSave = () => {
         const updatedTodoItem = { ...todoItem, text: editText };
-        updateTodo(id, updatedTodoItem).then(() => {
-            dispatch({ type: "UPDATE", payload: { id, text: editText } });
+        updateTodo(id, updatedTodoItem).then((item) => {
+            dispatch({ type: "UPDATE", payload: item });
             setIsModalVisible(false);
         });
     };
 
     const handleEditTextChange = (e) => {
-        setEditText(e.target.value);
+        const newText = e.target.value;
+        if (newText !== null && newText.trim() !== "" && newText !== todoItem.text) {
+            setEditText(newText);
+        }
     };
 
     return (
         <div className="TodoItemRow">
             <input
                 className={!todoItem.done ? "input-active" : "input-inactive"}
-                value={todo}
+                value={todoItem.text}
                 onClick={handleTextClicked}
                 readOnly
             />

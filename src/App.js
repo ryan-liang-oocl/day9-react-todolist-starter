@@ -18,6 +18,7 @@ function App() {
             <TodoContext.Provider value={{ state, dispatch }}>
                 <BrowserRouter>
                     <Routes>
+                        //todo
                         <Route path={"/*"} element={<NotFound />} />
                         <Route path={"/"} element={<Navigate to={"/home"} />} />
                         <Route path={"/home"} element={<><NavBar /><Home /></>} />
