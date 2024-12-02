@@ -32,6 +32,11 @@ const TodoItem = ({ id, todoItem }) => {
     };
 
     const handleSave = () => {
+        if (!editText.trim()) return;
+        if (editText === todoItem.text) {
+            setIsModalVisible(false);
+            return;
+        }
         const updatedTodoItem = { ...todoItem, text: editText };
         updateTodo(id, updatedTodoItem).then((item) => {
             dispatch({ type: "UPDATE", payload: item });
@@ -40,10 +45,7 @@ const TodoItem = ({ id, todoItem }) => {
     };
 
     const handleEditTextChange = (e) => {
-        const newText = e.target.value;
-        if (newText !== null && newText.trim() !== "" && newText !== todoItem.text) {
-            setEditText(newText);
-        }
+        setEditText(e.target.value);
     };
 
     return (
@@ -59,7 +61,7 @@ const TodoItem = ({ id, todoItem }) => {
             </Button>
             <Modal
                 title="Edit Text"
-                visible={isModalVisible}
+                open={isModalVisible}
                 onCancel={handleCancel}
                 onOk={handleSave}
                 okText="Save"

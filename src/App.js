@@ -7,6 +7,7 @@ import {NotFound} from "./components/NotFound";
 import {DoneList} from "./components/DoneList";
 import {NavBar} from "./components/NavBar";
 import {Home} from "./components/Home";
+import TodoSelector from "./components/TodoSelector";
 
 export const TodoContext = createContext();
 
@@ -24,6 +25,7 @@ function App() {
                         <Route path={"/home"} element={<><NavBar /><Home /></>} />
                         <Route path={"/todo-list"} element={<><NavBar /><TodoList /></>} />
                         <Route path={"/done-list"} element={<><NavBar /><DoneList /></>} />
+                        <Route path={"/search"} element={<><NavBar /><TodoSelector /></>} />
                     </Routes>
                 </BrowserRouter>
             </TodoContext.Provider>

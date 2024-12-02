@@ -6,7 +6,8 @@ export const NavBar = () => {
         <nav>
             <Link to={"/home"}>HOME</Link> |
             <Link to={"/todo-list"}>TODO LIST</Link> |
-            <Link to={"/done-list"}>DONE LIST</Link>
+            <Link to={"/done-list"}>DONE LIST</Link> |
+            <Link to={"/search"}>SEARCH</Link>
         </nav>
     );
 };
